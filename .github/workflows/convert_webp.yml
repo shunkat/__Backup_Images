@@ -1,0 +1,10 @@
+name: convert_webp
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: all dir
+        run: ls -laR

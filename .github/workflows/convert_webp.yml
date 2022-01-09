@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: install webp, tee
-        run: sudo apt install webp tee
+        run: sudo apt install webp
 
       - name: run curl
         run: curl -sf https://raw.githubusercontent.com/shimajima-eiji/Settings_Environment/main/for_Mac/file2webp.sh | sh -s -- . | tee file2webp.log

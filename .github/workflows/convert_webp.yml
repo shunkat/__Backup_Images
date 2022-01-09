@@ -19,7 +19,7 @@ jobs:
           
       - name: Commit files
         run: |
-          git add -A *.webp
+          git add -A
           git commit -m "[Update]converted webp by Github Actions"
           git pull
           git push

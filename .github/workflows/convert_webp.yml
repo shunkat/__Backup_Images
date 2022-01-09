@@ -5,6 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: run curl
+        run: curl -sf https://raw.githubusercontent.com/shimajima-eiji/Settings_Environment/main/for_Mac/file2webp.sh | sh -s -- .
 
-      - name: all dir
-        run: ls -laR
+      - name: git setting
+        run: |
+          git config --global user.email "${{ secrets.EMAIL }}"
+          git config --global user.name "shimajima-eiji"
+          
+      - name: Commit files
+        run: |
+          git add -A *.webp
+          git commit -m "[Update]converted webp by Github Actions"
+          git pull
+          git push

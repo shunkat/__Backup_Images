@@ -6,12 +6,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: install webp
-        run: sudo apt install webp
+      - name: install webp, tee
+        run: sudo apt install webp tee
 
       - name: run curl
-        run: curl -sf https://raw.githubusercontent.com/shimajima-eiji/Settings_Environment/main/for_Mac/file2webp.sh | sh -s -- .
-
+        run: curl -sf https://raw.githubusercontent.com/shimajima-eiji/Settings_Environment/main/for_Mac/file2webp.sh | sh -s -- . | tee file2webp.log
+        
+      - name: result check
+        id: result
+        run: tail -n 1 file2webp.log
+        continue-on-error: true
+        
+      - name: debug
+        run: echo $CONTEXT
+        env:
+          CONTEXT: ${{ toJSON(steps.result) }}
+        
       - name: git setting
         run: |
           git config --global user.email "${{ secrets.EMAIL }}"

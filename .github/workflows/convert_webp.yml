@@ -15,27 +15,20 @@ jobs:
       - name: run curl
         run: curl -sf https://raw.githubusercontent.com/shimajima-eiji/Settings_Environment/main/for_Mac/file2webp.sh | sh -s -- . | tee file2webp.log
         
-      # webpに変換したファイル数を取得（残念ながら仕様のため変換0でtrue / 変換したら1以上になりfalse)
-      # 0/1〜を出力しているのはcurlしたスクリプトの最終出力で件数を表示している
-      - name: result check
-        id: result
-        run: tail -n 1 file2webp.log
-        continue-on-error: true
-        
+      # webp変換した場合のみ処理する
+      - name: Commit files
+        run: |
+          if [ $(tail -n 1 file2webp.log) -ne 0 ]
+          then
+            git config --global user.email "${{ secrets.EMAIL }}"
+            git config --global user.name "shimajima-eiji"
+            git add -A
+            git commit -m "[Update]converted webp by Github Actions"
+            git pull
+            git push
+          fi
+
       # teeで作ったログファイルは不要なので削除。内容が知りたいならgithubを参照
       - name: remove checkfile
         run: rm file2webp.log
         
-      - name: git setting
-        run: |
-          git config --global user.email "${{ secrets.EMAIL }}"
-          git config --global user.name "shimajima-eiji"
-
-      # webp変換した場合のみ処理する
-      - name: Commit files
-        if: steps.result.outcome == 'success'
-        run: |
-          git add -A
-          git commit -m "[Update]converted webp by Github Actions"
-          git pull
-          git push

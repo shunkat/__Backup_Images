@@ -20,6 +20,7 @@ jobs:
         run: |
           if [ $(tail -n 1 file2webp.log) -ne 0 ]
           then
+            rm file2webp.log  # 先にログファイルを消さないと、ログファイルもpushしてしまう
             git config --global user.email "${{ secrets.EMAIL }}"
             git config --global user.name "shimajima-eiji"
             git add -A
@@ -29,9 +30,4 @@ jobs:
             echo "[COMPLETE] convert to webp."
           else
             echo "[SKIP] No convert."
-          fi
-
-      # teeで作ったログファイルは不要なので削除。内容が知りたいならgithubを参照
-      - name: remove checkfile
-        run: rm file2webp.log
-        
+          fi        

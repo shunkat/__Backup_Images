@@ -33,7 +33,7 @@ jobs:
 
       # デバッグ
       - name: output step context
-        run: echo $CONTEXT
+        run: echo ${{ toJSON(steps.check_something) }}
         env:
           CONTEXT: ${{ toJSON(steps.check_something) }}
 

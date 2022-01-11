@@ -39,7 +39,7 @@ jobs:
 
       # webp変換した場合のみ処理する
       - name: Commit files
-        if: steps.check_something.outcome == 'success'
+        if: steps.result.outcome == 'success'
         run: |
           git add -A
           git commit -m "[Update]converted webp by Github Actions"

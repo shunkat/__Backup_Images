@@ -26,6 +26,9 @@ jobs:
             git commit -m "[Update]converted webp by Github Actions"
             git pull
             git push
+            echo "[COMPLETE] convert to webp."
+          else
+            echo "[SKIP] No convert."
           fi
 
       # teeで作ったログファイルは不要なので削除。内容が知りたいならgithubを参照

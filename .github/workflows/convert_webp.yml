@@ -35,7 +35,7 @@ jobs:
       - name: output step context
         run: echo ${{ toJSON(steps.check_something) }}
         env:
-          CONTEXT: ${{ toJSON(steps.check_something) }}
+          CONTEXT: ${{ toJSON(steps) }}
 
       # webp変換した場合のみ処理する
       - name: Commit files

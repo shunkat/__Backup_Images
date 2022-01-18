@@ -1,3 +1,4 @@
 - [Github Pages](https://shimajima-eiji.github.io/__Backup_Images/Zenn/articles/zenn-startup)
-- [記事](https://zenn.dev/articles/zenn-startup)
-- [リポジトリ](https://github.com/shimajima-eiji/__Article_Zenn/blob/main/articles/zenn-startup.md)
+  - [リポジトリ](https://github.com/shimajima-eiji/__Backup_Images/blob/main/Zenn/articles/zenn-startup)
+- [記事](https://zenn.dev/nomuraya/articles/zenn-startup)
+  - [リポジトリ](https://github.com/shimajima-eiji/__Article_Zenn/blob/main/articles/zenn-startup.md)

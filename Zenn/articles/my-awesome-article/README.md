@@ -1,2 +1,3 @@
+- [Github Pages](https://shimajima-eiji.github.io/__Backup_Images/Zenn/articles/my-awesome-article)
 - [記事](https://zenn.dev/articles/my-awesome-article)
 - [リポジトリ](https://github.com/shimajima-eiji/__Article_Zenn/blob/main/articles/my-awesome-article.md)

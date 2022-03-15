@@ -13,30 +13,30 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: webp変換パッケージインストール
-        id: python_command
-        run: |
-          sudo apt install python3 pip
-          pip install pathlib pillow python-box
-
       - name: python3.8以前では「PosixPath.with_stem」が使えないので、Pythonをバージョンアップする。
+        id: python_command
         # Ref:
         # - https://docs.python.org/ja/3/library/pathlib.html
         # - https://codechacha.com/ja/ubuntu-install-python39
         env:
-          version: 3.10
+          minor: 10
         run: |
           pyc=$(python3)
           if [ "$(python3 --version | cut -d"." -f2)" -lt 9 ]
           then
             sudo apt update && sudo apt install software-properties-common
             sudo add-apt-repository ppa:deadsnakes/ppa
-            sudo apt install python${version}
-            pyc=python${version}
+            sudo apt install python3.${minor}
+            pyc=python3.${minor}
           fi
           
           ${pyc} --version
           echo "::set-output name=pyc::${pyc}"
+
+      - name: webp変換パッケージインストール
+        run: |
+          sudo apt install python3 pip
+          pip install pathlib pillow python-box
 
       - name: webp変換
         env:

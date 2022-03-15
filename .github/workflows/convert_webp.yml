@@ -35,7 +35,7 @@ jobs:
 
       - name: webp変換パッケージインストール
         run: |
-          sudo apt install python3 pip
+          sudo apt install pip
           pip install pathlib pillow python-box
 
       - name: webp変換

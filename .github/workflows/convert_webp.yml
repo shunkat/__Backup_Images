@@ -40,7 +40,7 @@ jobs:
 
       - name: webp変換
         env:
-          pycommand: ${{ steps.python_command.outputs.pyc }}
+          pyc: ${{ steps.python_command.outputs.pyc }}
         run: |
           curl -sf https://raw.githubusercontent.com/shimajima-eiji/__Operation-Maintenance/main/for_github/workflows/convert_webp.py | ${pyc}
       

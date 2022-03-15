@@ -38,7 +38,7 @@ jobs:
           pyc: ${{ steps.python_command.outputs.pyc }}
         run: |
           ${pyc} -m pip install --upgrade pip
-          ${pyc} -m pip install pathlib
+          ${pyc} -m pip install pathlib pillow python-box
 
       - name: webp変換
         env:

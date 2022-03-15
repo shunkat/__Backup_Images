@@ -17,26 +17,28 @@ jobs:
         id: python_command
         # Ref:
         # - https://docs.python.org/ja/3/library/pathlib.html
-        # - https://codechacha.com/ja/ubuntu-install-python39
+        # - https://codechacha.com/ja/ubuntu-install-python39/
+        # - https://stackoverflow.com/questions/65644782/how-to-install-pip-for-python-3-9-on-ubuntu-20-04
         env:
-          minor: 10
+          minor: 9
         run: |
           pyc=$(python3)
-          if [ "$(python3 --version | cut -d"." -f2)" -lt 9 ]
+          if [ "$(python3 --version | cut -d"." -f2)" -lt "${minor}" ]
           then
-            sudo apt update && sudo apt install software-properties-common
+            sudo apt update && sudo apt install software-properties-common python3.${minor}-distutils
             sudo add-apt-repository ppa:deadsnakes/ppa
             sudo apt install python3.${minor}
             pyc=python3.${minor}
           fi
-          
-          ${pyc} --version
+          ${pyc} --version	
           echo "::set-output name=pyc::${pyc}"
 
       - name: webp変換パッケージインストール
+        env:
+          pyc: ${{ steps.python_command.outputs.pyc }}
         run: |
-          sudo apt install pip
-          pip install pathlib pillow python-box
+          ${pyc} -m pip install --upgrade pip
+          ${pyc} -m pip install pathlib
 
       - name: webp変換
         env:

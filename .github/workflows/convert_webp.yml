@@ -22,16 +22,7 @@ jobs:
         env:
           minor: 9
         run: |
-          pyc=$(python)
-          echo "${pyc}"  # デバッグ
-          if [ "$(python3 --version | cut -d"." -f2)" -lt "${minor}" ]
-          then
-            sudo apt update && sudo apt install software-properties-common python3.${minor}-distutils
-            sudo add-apt-repository ppa:deadsnakes/ppa
-            sudo apt install python3.${minor}
-            pyc=python3.${minor}
-          fi
-          ${pyc} --version	
+          pyc=python
           echo "::set-output name=pyc::${pyc}"
 
       - name: webp変換パッケージインストール

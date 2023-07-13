@@ -23,6 +23,7 @@ jobs:
           minor: 9
         run: |
           pyc=$(python3)
+          ${pyc} --version  # デバッグ
           if [ "$(python3 --version | cut -d"." -f2)" -lt "${minor}" ]
           then
             sudo apt update && sudo apt install software-properties-common python3.${minor}-distutils

@@ -1,1 +1,0 @@
-- [URL](https://zenn.dev/nomuraya/books/for_zenn_beginner)
